@@ -8,6 +8,6 @@ let listofstrings: string[] = ['Arrays', 'com', 'TypeScript'];
 
 function concatenation(x: string[]): string { return x.join(' '); }
 
-let result: string = concatenation(listofstrings);
+let concatenetResult: string = concatenation(listofstrings);
 
-console.log(result)
+console.log(concatenetResult)
