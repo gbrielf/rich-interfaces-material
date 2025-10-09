@@ -6,7 +6,7 @@
 
 let listofstrings: string[] = ['Arrays', 'com', 'TypeScript'];
 
-function concatenation(x: string[]): string { return x.join(' '); }
+export function concatenation(x: string[]): string { return x.join(' '); }
 
 let concatenetResult: string = concatenation(listofstrings);
 

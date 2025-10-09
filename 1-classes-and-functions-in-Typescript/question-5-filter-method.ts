@@ -7,6 +7,10 @@
 
 let array: number[] = [8, 3, 9, 5, 6, 12];
 
-const pairNumbers = array.filter(num => num % 2 === 0);
+export function filterEvenNumbers(numbers: number[]): number[] {
+    return numbers.filter(num => num % 2 === 0); // Arrow function para filtrar pares
+}
+
+const pairNumbers = filterEvenNumbers(array);
 
 console.log(pairNumbers);

@@ -7,7 +7,10 @@
 
 let test_sort: string[] = ['carro','boneco','ave','lapis']
 
-function sortenator( x: string[]): string[] { return x.sort();}
+// exemplo da questão 2 export function concatenation(x: string[]): string { return x.join(' '); }
+export function sortenator( x: string[]): string[] { 
+    return x.sort((a, b) => b.localeCompare(a)); // Arrow function para ordem decrescente
+}
 
 let sortedResult: string[] = sortenator(test_sort);
 
