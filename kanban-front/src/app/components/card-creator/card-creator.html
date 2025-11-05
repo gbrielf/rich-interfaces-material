@@ -28,6 +28,27 @@
           class="w-full p-2 mt-1 text-gray-200 border border-gray-300 rounded-md focus:text-gray-500" />
       </div>
 
+      <!-- Prioridade: Alta (vermelho), Média (amarelo), Baixa (verde) -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Prioridade</label>
+        <div class="flex items-center gap-3 mt-2">
+          <label class="inline-flex items-center gap-2">
+            <input type="radio" formControlName="prioridade" value="Alta" name="prioridade" />
+            <span class="px-2 py-0.5 rounded text-sm text-white" style="background-color: #dc2626;">Alta</span>
+          </label>
+
+          <label class="inline-flex items-center gap-2">
+            <input type="radio" formControlName="prioridade" value="Média" name="prioridade" />
+            <span class="px-2 py-0.5 rounded text-sm text-black" style="background-color: #f59e0b;">Média</span>
+          </label>
+
+          <label class="inline-flex items-center gap-2">
+            <input type="radio" formControlName="prioridade" value="Baixa" name="prioridade" />
+            <span class="px-2 py-0.5 rounded text-sm text-white" style="background-color: #16a34a;">Baixa</span>
+          </label>
+        </div>
+      </div>
+
       <div>
         <p-button label="Salvar Tarefa" type="submit" class="font-bold" styleClass="w-full"
           [disabled]="novaTarefaForm.invalid"></p-button>

@@ -149,4 +149,62 @@ export class BoardStateService {
     }
     this.moveTarefa(tarefaId, nextId);
   }
+
+  // (READ) - Retorna uma tarefa pelo seu id (procura em todas as colunas)
+  getTarefaById(tarefaId: number): Tarefa | undefined {
+    for (const coluna of this.board.value) {
+      const t = coluna.tarefas.find((task) => task.id === tarefaId);
+      if (t) return t;
+    }
+    return undefined;
+  }
+
+  // (LIST) - Retorna todas as tarefas do board em um array plano
+  listTarefas(): Tarefa[] {
+    return this.board.value.reduce((acc: Tarefa[], col) => acc.concat(col.tarefas), [] as Tarefa[]);
+  }
+
+  // (UPDATE) - Atualiza campos de uma tarefa; se a coluna mudar, a tarefa é movida
+  updateTarefa(tarefaId: number, updates: Partial<Tarefa>): void {
+    const colunasAtuais = [...this.board.value];
+
+    // Encontra coluna e índice da tarefa
+    const fromColuna = colunasAtuais.find((c) => c.tarefas.some((t) => t.id === tarefaId));
+    if (!fromColuna) {
+      console.warn('updateTarefa: coluna de origem não encontrada para tarefa', tarefaId);
+      return;
+    }
+
+    const tarefaIndex = fromColuna.tarefas.findIndex((t) => t.id === tarefaId);
+    if (tarefaIndex === -1) return;
+
+    const tarefa = fromColuna.tarefas[tarefaIndex];
+
+    // Aplica atualizações sobre uma cópia
+    const updated: Tarefa = { ...tarefa, ...updates } as Tarefa;
+
+    // Se a coluna mudou, remove da coluna de origem e adiciona na coluna destino
+    if (updates.coluna != null && updates.coluna !== fromColuna.id) {
+      // Remove da origem
+      fromColuna.tarefas.splice(tarefaIndex, 1);
+
+      const toColuna = colunasAtuais.find((c) => c.id === updates.coluna);
+      if (!toColuna) {
+        console.warn('updateTarefa: coluna destino não encontrada', updates.coluna);
+        // coloca de volta na origem para não perder
+        fromColuna.tarefas.splice(tarefaIndex, 0, tarefa);
+        return;
+      }
+
+      // Garante que a propriedade coluna esteja correta
+      updated.coluna = toColuna.id;
+      toColuna.tarefas.push(updated);
+    } else {
+      // Mantém na mesma coluna: substitui o objeto
+      fromColuna.tarefas[tarefaIndex] = updated;
+    }
+
+    // Notifica assinantes com o novo estado
+    this.board.next(colunasAtuais);
+  }
 }

@@ -25,6 +25,20 @@ export class TaskCard {
   // @Input() tags: Etiqueta[] = [];
   private boardStateService = inject(BoardStateService);
 
+  // Função para mapear prioridade para cor
+  getPrioridadeCor(prioridade: string): string {
+    switch (prioridade.toLowerCase()) {
+      case 'alta':
+        return '#dc2626'; // vermelho
+      case 'média':
+        return '#f59e0b'; // amarelo
+      case 'baixa':
+        return '#16a34a'; // verde
+      default:
+        return '#6b7280'; // cinza para valores desconhecidos
+    }
+  }
+
   onExcluir() {
     if (!this.tarefa) return;
 
