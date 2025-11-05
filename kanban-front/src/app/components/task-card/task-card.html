@@ -8,8 +8,8 @@
             [style]="{ 'background-color': tag.cor, color: 'white' }">
           </p-tag>
         </div>
-        <div class="mb-2 flex items-center gap-2">
-          <span class="text-sm">Prioridade:</span>
+        <div class="mb-2 flex flex-col items-center gap-2">
+          <span class="text-xs">Prioridade:</span>
           <p-tag [value]="tarefa.prioridade" 
                  [style]="{ 'background-color': getPrioridadeCor(tarefa.prioridade), color: 'white' }">
           </p-tag>
