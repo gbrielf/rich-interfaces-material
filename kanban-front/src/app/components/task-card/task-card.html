@@ -30,13 +30,13 @@
     <ng-template #footer>
       <div class="flex items-center justify-between gap-2">
         <div class="flex gap-2">
-          <p-button class="task-card-button"  label="Editar" severity="secondary" outlined="true" (click)="onEditar()" ></p-button>
-          <p-button class="task-card-button" label="Excluir" severity="danger" (click)="onExcluir()"></p-button>
+          <p-button class="task-card-button"  label="Editar" severity="secondary" outlined="true" (click)="onEditar()" styleClass="[&_.p-button-label]:font-bold "></p-button>
+          <p-button class="task-card-button" label="Excluir" severity="danger" (click)="onExcluir()" styleClass="[&_.p-button-label]:font-bold"></p-button>
         </div>
 
         <div>
           <p-button class="task-card-button" icon="pi pi-step-forward" class="p-button-rounded p-button-text" (click)="onPular()"
-            [disabled]="!tarefa">Next</p-button>
+            [disabled]="!tarefa" styleClass="font-bold">Next</p-button>
         </div>
       </div>
     </ng-template>
